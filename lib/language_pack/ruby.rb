@@ -729,7 +729,7 @@ BUNDLE
       bundle_command << "BUNDLE_WITHOUT='#{ENV["BUNDLE_WITHOUT"]}' "
       bundle_command << "BUNDLE_PATH=#{ENV["BUNDLE_PATH"]} "
       bundle_command << "BUNDLE_BIN=#{ENV["BUNDLE_BIN"]} "
-      bundle_command << "BUNDLE_FORCE_RUBY_PLATFORM=true "
+      # bundle_command << "BUNDLE_FORCE_RUBY_PLATFORM=true "
       puts "1 - ENV BUNDLE_DEPLOYMENT=#{ENV["BUNDLE_DEPLOYMENT"]}"
       puts "1 - ENV AWS_DOCUMENTS_BUCKET=#{ENV["AWS_DOCUMENTS_BUCKET"]}"
       puts "1 - ENV PKG_CONFIG_PATH4=#{ENV["PKG_CONFIG_PATH"]}"
