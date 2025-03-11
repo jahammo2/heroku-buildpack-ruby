@@ -761,6 +761,11 @@ BUNDLE
         env_vars["BUNDLE_DISABLE_VERSION_CHECK"] = "true"
 
         puts "Running: #{bundle_command}"
+        puts "yaml_include: #{yaml_include}"
+        puts "yaml_lib: #{yaml_lib}"
+        puts "pwd: #{pwd}"
+        puts "LIBYAML_PATH: #{LIBYAML_PATH}"
+        puts "ENV: #{ENV}"
         puts "ENV PKG_CONFIG_PATH1=#{ENV["BUNDLE_DEPLOYMENT"]}"
         puts "ENV PKG_CONFIG_PATH2=#{ENV["AWS_DOCUMENTS_BUCKET"]}"
         puts "ENV PKG_CONFIG_PATH3=#{ENV["CPATH"]}"
