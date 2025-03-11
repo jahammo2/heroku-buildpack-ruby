@@ -730,6 +730,8 @@ BUNDLE
       bundle_command << "BUNDLE_PATH=#{ENV["BUNDLE_PATH"]} "
       bundle_command << "BUNDLE_BIN=#{ENV["BUNDLE_BIN"]} "
       puts "1 - ENV BUNDLE_DEPLOYMENT=#{ENV["BUNDLE_DEPLOYMENT"]}"
+      puts "1 - ENV AWS_DOCUMENTS_BUCKET=#{ENV["AWS_DOCUMENTS_BUCKET"]}"
+      puts "1 - ENV PKG_CONFIG_PATH4=#{ENV["PKG_CONFIG_PATH"]}"
       bundle_command << "BUNDLE_DEPLOYMENT=#{ENV["BUNDLE_DEPLOYMENT"]} " if ENV["BUNDLE_DEPLOYMENT"] # Unset on windows since we delete the Gemfile.lock
       bundle_command << "BUNDLE_GLOBAL_PATH_APPENDS_RUBY_SCOPE=#{ENV["BUNDLE_GLOBAL_PATH_APPENDS_RUBY_SCOPE"]} " if bundler.needs_ruby_global_append_path?
       bundle_command << "bundle install -j4"
@@ -760,6 +762,7 @@ BUNDLE
         env_vars["BUNDLE_DISABLE_VERSION_CHECK"] = "true"
         env_vars["BUNDLER_LIB_PATH"]             = "#{bundler_path}" if ruby_version.ruby_version == "1.8.7"
         env_vars["BUNDLE_DISABLE_VERSION_CHECK"] = "true"
+        env_vars["PKG_CONFIG_PATH"] = "/app/vendor/imagemagick/lib/pkgconfig"
 
         puts "Running: #{bundle_command}"
         puts "yaml_include: #{yaml_include}"
