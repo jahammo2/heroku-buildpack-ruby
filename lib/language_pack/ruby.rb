@@ -761,6 +761,7 @@ BUNDLE
         env_vars["BUNDLE_DISABLE_VERSION_CHECK"] = "true"
 
         puts "Running: #{bundle_command}"
+        puts "ENV PKG_CONFIG_PATH=#{ENV["PKG_CONFIG_PATH"]}"
         bundle_time = Benchmark.realtime do
           bundler_output << pipe("#{bundle_command} --no-clean", out: "2>&1", env: env_vars, user_env: true)
         end
