@@ -729,9 +729,9 @@ BUNDLE
       bundle_command << "BUNDLE_WITHOUT='#{ENV["BUNDLE_WITHOUT"]}' "
       bundle_command << "BUNDLE_PATH=#{ENV["BUNDLE_PATH"]} "
       bundle_command << "BUNDLE_BIN=#{ENV["BUNDLE_BIN"]} "
-      bundle_command << "BUNDLE_DEPLOYMENT=0 " # Unset on windows since we delete the Gemfile.lock
+      bundle_command << "BUNDLE_DEPLOYMENT=#{ENV["BUNDLE_DEPLOYMENT"]} " if ENV["BUNDLE_DEPLOYMENT"] # Unset on windows since we delete the Gemfile.lock
       bundle_command << "BUNDLE_GLOBAL_PATH_APPENDS_RUBY_SCOPE=#{ENV["BUNDLE_GLOBAL_PATH_APPENDS_RUBY_SCOPE"]} " if bundler.needs_ruby_global_append_path?
-      bundle_command << "bundle install -j4 --verbose"
+      bundle_command << "bundle install -j4"
 
       topic("Installing dependencies using bundler #{bundler.version}")
 
@@ -761,7 +761,10 @@ BUNDLE
         env_vars["BUNDLE_DISABLE_VERSION_CHECK"] = "true"
 
         puts "Running: #{bundle_command}"
-        puts "ENV PKG_CONFIG_PATH=#{ENV["PKG_CONFIG_PATH"]}"
+        puts "ENV PKG_CONFIG_PATH1=#{ENV["BUNDLE_DEPLOYMENT"]}"
+        puts "ENV PKG_CONFIG_PATH2=#{ENV["AWS_DOCUMENTS_BUCKET"]}"
+        puts "ENV PKG_CONFIG_PATH3=#{ENV["CPATH"]}"
+        puts "ENV PKG_CONFIG_PATH4=#{ENV["PKG_CONFIG_PATH"]}"
         bundle_time = Benchmark.realtime do
           bundler_output << pipe("#{bundle_command} --no-clean", out: "2>&1", env: env_vars, user_env: true)
         end
