@@ -729,6 +729,7 @@ BUNDLE
       bundle_command << "BUNDLE_WITHOUT='#{ENV["BUNDLE_WITHOUT"]}' "
       bundle_command << "BUNDLE_PATH=#{ENV["BUNDLE_PATH"]} "
       bundle_command << "BUNDLE_BIN=#{ENV["BUNDLE_BIN"]} "
+      puts "1 - ENV BUNDLE_DEPLOYMENT=#{ENV["BUNDLE_DEPLOYMENT"]}"
       bundle_command << "BUNDLE_DEPLOYMENT=#{ENV["BUNDLE_DEPLOYMENT"]} " if ENV["BUNDLE_DEPLOYMENT"] # Unset on windows since we delete the Gemfile.lock
       bundle_command << "BUNDLE_GLOBAL_PATH_APPENDS_RUBY_SCOPE=#{ENV["BUNDLE_GLOBAL_PATH_APPENDS_RUBY_SCOPE"]} " if bundler.needs_ruby_global_append_path?
       bundle_command << "bundle install -j4"
@@ -766,6 +767,9 @@ BUNDLE
         puts "pwd: #{pwd}"
         puts "LIBYAML_PATH: #{LIBYAML_PATH}"
         puts "ENV: #{ENV}"
+        puts 'noshellescape("#{yaml_include}:$CPATH")'
+        puts noshellescape("#{yaml_include}:$CPATH")
+        puts noshellescape("$PKG_CONFIG_PATH")
         puts "ENV PKG_CONFIG_PATH1=#{ENV["BUNDLE_DEPLOYMENT"]}"
         puts "ENV PKG_CONFIG_PATH2=#{ENV["AWS_DOCUMENTS_BUCKET"]}"
         puts "ENV PKG_CONFIG_PATH3=#{ENV["CPATH"]}"
