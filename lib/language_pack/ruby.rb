@@ -764,7 +764,7 @@ BUNDLE
         env_vars["BUNDLE_DISABLE_VERSION_CHECK"] = "true"
         env_vars["BUNDLER_LIB_PATH"]             = "#{bundler_path}" if ruby_version.ruby_version == "1.8.7"
         env_vars["BUNDLE_DISABLE_VERSION_CHECK"] = "true"
-        env_vars["PKG_CONFIG_PATH"] = "/app/vendor/imagemagick/lib/pkgconfig"
+        env_vars["PKG_CONFIG_PATH"] = ENV["PKG_CONFIG_PATH"]
 
         puts "Running: #{bundle_command}"
         puts "yaml_include: #{yaml_include}"
